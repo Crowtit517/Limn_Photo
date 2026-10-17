@@ -1,0 +1,53 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "Limn",
+  "version": "0.1.0",
+  "identifier": "app.limn.editor",
+  "build": {
+    "frontendDist": "../app-dist",
+    "devUrl": "http://localhost:8080"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Limn - 이미지 편집기",
+        "width": 1200,
+        "height": 720,
+        "minWidth": 900,
+        "minHeight": 560,
+        "resizable": true,
+        "maximized": true,
+        "dragDropEnabled": false
+      }
+    ],
+    "security": {
+      "csp": null,
+      "headers": {
+        "Cross-Origin-Opener-Policy": "same-origin",
+        "Cross-Origin-Embedder-Policy": "require-corp"
+      }
+    },
+    "withGlobalTauri": true
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "nsis": {
+        "languages": [
+          "Korean"
+        ],
+        "installMode": "currentUser"
+      }
+    }
+  },
+  "mainBinaryName": "Limn"
+}

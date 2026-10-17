@@ -1,0 +1,35 @@
+# OS / editor
+.DS_Store
+._*
+Thumbs.db
+ehthumbs.db
+.idea/
+.vscode/
+*.log
+
+# dependencies and build output (npm install / npm run build / npm run app)
+/node_modules/
+/dist/
+/app-dist/
+/release/
+/src-tauri/target/
+/src-tauri/gen/schemas/
+
+# AI models: too big for git, get them with `npm run models`
+/models/
+*.part
+
+# local test material, not part of the app
+/samples/
+/test/
+/examples/
+/tools/stress.js
+/tools/cdp-eval.js
+/tools/demo-edit.js
+/tools/test-harness.js
+/tools/menu_targets.json
+
+# kept locally only
+/_unused/
+/images/_old/
+*.js.ignore
