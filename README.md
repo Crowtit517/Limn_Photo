@@ -168,13 +168,13 @@ tools/            실행, 빌드, 모델 받기 스크립트
 
 <br>
 
-## 출처
+## 사용한 오픈 소스
 
-Limn은 아래 프로젝트들을 바탕으로 만들었습니다.
+Limn은 [miniPaint](https://github.com/viliusle/miniPaint)(MIT)를 바탕으로 만들었습니다.
+그 밖에 아래 오픈 소스를 사용하고 있어요.
 
 | 이름 | 쓰인 곳 | 라이선스 |
 |---|---|---|
-| [miniPaint](https://github.com/viliusle/miniPaint) | 출발점이 된 웹 이미지 편집기 | MIT |
 | [Tauri](https://tauri.app/) | Windows 앱 | MIT / Apache-2.0 |
 | [ONNX Runtime Web](https://onnxruntime.ai/) | AI 모델 실행 | MIT |
 | [Transformers.js](https://github.com/huggingface/transformers.js) | 오브젝트 선택 모델 실행 | Apache-2.0 |
