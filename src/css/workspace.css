@@ -168,23 +168,22 @@ body .sidebar_right.ws_dock {
 /* adjustments */
 .ws_adjust { padding: 8px; }
 .ws_adjust_title { font-size: 12px; color: var(--text-color-muted); margin-bottom: 8px; }
-.ws_adjust_grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
-/* icons only, like the Photoshop panel; the name shows on hover */
+.ws_adjust_grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
 .ws_adjust_btn {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-	justify-content: center;
-	aspect-ratio: 1;
-	padding: 0;
+	gap: 4px;
+	padding: 8px 2px;
+	font-size: 11px;
 	color: var(--text-color);
 	background: var(--button-background-color);
 	border: 1px solid var(--border-color);
-	border-radius: 5px;
+	border-radius: 6px;
 	cursor: pointer;
 }
-.ws_adjust_btn span { display: none; }
 .ws_adjust_btn:hover { background: var(--button-background-color-hover); }
-.ws_adjust_btn svg { width: 20px; height: 20px; fill: currentColor; }
+.ws_adjust_btn svg { width: 22px; height: 22px; fill: currentColor; }
 /* properties */
 .ws_props_head { display: flex; align-items: center; gap: 8px; padding: 8px 10px 4px 10px; }
 .ws_props_kind { font-size: 12px; font-weight: 600; color: var(--text-color); }
@@ -312,4 +311,4 @@ body.ws_hide_all .ws_dock_left { display: none; }
 .ws_panel_color #toggle_colors > * { flex: none; }
 .ws_panel_color #color_section_picker { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
 .ws_panel_color #color_section_picker > * { flex: none; }
-.ws_panel_color #color_section_picker .ui_color_picker_gradient { flex: 1 1 auto; min-height: 40px; padding: 0; height: auto; margin: 0 8px; width: auto; }
+.ws_panel_color #color_section_picker .ui_color_picker_gradient { flex: 1 1 auto; min-height: 40px; padding: 0; height: auto; }
