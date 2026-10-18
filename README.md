@@ -10,7 +10,7 @@
 
 <br>
 
-<img src="images/readme/screenshot.jpg" width="840" alt="Limn 편집 화면">
+<img src="images/readme/screenshot.png" width="840" alt="Limn 편집 화면">
 
 </div>
 
@@ -113,6 +113,19 @@ PSD 파일을 열고 저장할 수 있고, 카메라 RAW 파일도 열 수 있�
 
 <br>
 
+## 설치하기
+
+1. [최신 버전 받기](https://github.com/Crowtit517/Limn_Photo/releases/latest) 페이지에서 `Limn.exe`를 내려받아요.
+2. 내려받은 `Limn.exe`를 더블클릭해요.
+3. "Windows의 PC 보호" 창이 뜨면 **추가 정보**를 누른 다음 **실행**을 눌러요. 개인이 만든 프로그램이라 Windows가 처음 한 번 확인하는 창이에요.
+4. 설치 프로그램이 열리면 **다음**을 누르고, 설치할 위치를 확인해요.
+5. 바탕 화면 바로 가기와 시작 메뉴 바로 가기 중 원하는 것에 체크하고 **설치**를 눌러요.
+6. 설치가 끝나면 **마침**을 눌러요. "Limn 실행"에 체크되어 있으면 바로 켜져요.
+
+지울 때는 **설정 → 앱 → 설치된 앱**에서 Limn을 찾아 **제거**를 누르면 돼요.
+
+<br>
+
 ## 자주 쓰는 단축키
 
 | 키 | 기능 | 키 | 기능 |
@@ -125,29 +138,6 @@ PSD 파일을 열고 저장할 수 있고, 카메라 RAW 파일도 열 수 있�
 | `R` | 회전 보기 (누른 채 끌면 잠깐만) | `Ctrl + Alt + Shift + E` | 도장 찍기 |
 | `Space` | 잠깐 손 도구 | `[` / `]` | 브러시 크기 |
 | `Ctrl + Z` | 실행 취소 | `Ctrl + Shift + Z` | 다시 실행 |
-
-<br>
-
-## 직접 실행해 보기
-
-[Node.js](https://nodejs.org/) 20.9 이상이 필요해요. Windows 프로그램으로 만들려면 [Rust](https://www.rust-lang.org/tools/install)도 설치해 주세요.
-
-**브라우저에서 실행**
-```bash
-npm install
-npm run models
-npm run build
-npm start
-```
-`npm start` 후 http://localhost:8080 으로 들어가면 돼요.
-`npm run models`는 AI 기능에 쓰는 파일(약 340MB)을 받아 와요. 용량이 커서 저장소에는 넣지 않았어요.
-
-**Windows 설치 파일 만들기**
-```bash
-npm run build
-npm run app
-```
-완성된 설치 파일은 `release/Limn.exe`에 생겨요.
 
 <br>
 

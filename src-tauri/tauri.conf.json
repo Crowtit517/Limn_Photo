@@ -17,7 +17,8 @@
         "minHeight": 560,
         "resizable": true,
         "maximized": true,
-        "dragDropEnabled": false
+        "dragDropEnabled": false,
+        "backgroundColor": "#15171c"
       }
     ],
     "security": {
@@ -45,7 +46,9 @@
         "languages": [
           "Korean"
         ],
-        "installMode": "currentUser"
+        "installMode": "currentUser",
+        "installerIcon": "icons/icon.ico",
+        "template": "installer.nsi"
       }
     }
   },

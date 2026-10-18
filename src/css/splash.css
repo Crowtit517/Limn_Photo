@@ -1,0 +1,95 @@
+/* start screen (Limn logo, loading steps) shown until the editor is ready */
+.limn_splash {
+	--splash-bg: #15171c;
+	--splash-ink: #f3eee4;
+	--splash-gold: #e0b25a;
+	--splash-muted: #8a8f99;
+	--splash-line: #2a2e37;
+	position: fixed;
+	inset: 0;
+	z-index: 9999;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: var(--splash-bg);
+	color: var(--splash-ink);
+	font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+	user-select: none;
+	transition: opacity .45s ease;
+}
+.limn_splash.done { opacity: 0; pointer-events: none; }
+
+.limn_splash .mark { width: 132px; height: 132px; overflow: visible; }
+.limn_splash .tile {
+	transform-origin: 48px 48px;
+	opacity: 0;
+	transform: scale(.92);
+	animation: limn-tile .5s cubic-bezier(.2, .7, .2, 1) .1s forwards;
+}
+.limn_splash .letters {
+	fill: var(--splash-ink);
+	fill-opacity: 0;
+	stroke: var(--splash-ink);
+	stroke-width: .6;
+	stroke-opacity: 0;
+	/* every stroke starts at once and grows: no empty pause at the start */
+	stroke-dasharray: 0 220;
+	animation: limn-draw 1.3s cubic-bezier(.33, 0, .2, 1) .25s forwards, limn-fill .7s ease-in-out 1.05s forwards;
+}
+.limn_splash .underline {
+	transform-origin: 26px 72px;
+	transform: scaleX(0);
+	animation: limn-line .45s cubic-bezier(.6, 0, .2, 1) 1.35s forwards;
+}
+
+.limn_splash .name {
+	margin-top: 26px;
+	font-family: Georgia, 'Times New Roman', serif;
+	font-size: 34px;
+	letter-spacing: .12em;
+	padding-left: .12em;
+	opacity: 0;
+	animation: limn-rise .6s ease 1.7s forwards;
+}
+.limn_splash .meaning {
+	margin-top: 10px;
+	font-size: 14px;
+	color: var(--splash-muted);
+	letter-spacing: .04em;
+	opacity: 0;
+	animation: limn-rise .6s ease 1.95s forwards;
+}
+
+.limn_splash .foot {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 36px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	opacity: 0;
+	animation: limn-fade .5s ease 2.1s forwards;
+}
+.limn_splash .bar { width: 220px; height: 2px; background: var(--splash-line); border-radius: 1px; overflow: hidden; }
+.limn_splash .bar i { display: block; height: 100%; width: 0; background: var(--splash-gold); transition: width .35s ease; }
+.limn_splash .status { font-size: 12px; color: var(--splash-muted); min-height: 1.2em; }
+.limn_splash .meta { font-size: 11px; color: #5d626c; }
+
+@keyframes limn-tile { to { opacity: 1; transform: scale(1); } }
+@keyframes limn-draw {
+	0% { stroke-dasharray: 0 220; stroke-opacity: 0; }
+	15% { stroke-opacity: 1; }
+	100% { stroke-dasharray: 220 0; stroke-opacity: 1; }
+}
+@keyframes limn-fill { to { fill-opacity: 1; stroke-opacity: 0; } }
+@keyframes limn-line { to { transform: scaleX(1); } }
+@keyframes limn-rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes limn-fade { to { opacity: 1; } }
+
+/* Windows "animation effects" off: show the finished splash right away */
+@media (prefers-reduced-motion: reduce) {
+	.limn_splash *, .limn_splash .letters { animation-duration: .01s !important; animation-delay: 0s !important; }
+}

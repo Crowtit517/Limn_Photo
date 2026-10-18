@@ -12,6 +12,7 @@ import './../css/menu.css';
 import './../css/print.css';
 import './../css/pro.css';
 import './../css/workspace.css';
+import './../css/splash.css';
 import './../../node_modules/alertifyjs/build/css/alertify.min.css';
 //js
 import app from './app.js';
@@ -29,42 +30,61 @@ import Shortcuts_class from './core/shortcuts.js';
 import Pixel_selection_class from './core/pixel-selection.js';
 import * as Actions from './actions/index.js';
 import { init_layer_locks } from './core/layer-locks.js';
+import { run_with_splash } from './core/gui/splash.js';
 
 window.addEventListener('load', function (e) {
-	// Initiate app
-	var Layers = new Base_layers_class();
-	var Base_tools = new Base_tools_class(true);
-	var GUI = new Base_gui_class();
-	var Base_state = new Base_state_class();
-	var File_open = new File_open_class();
-	var File_save = new File_save_class();
-	var Base_search = new Base_search_class();
-	//shortcuts first: its Alt+click capture handler must run before the paint commit one
-	var Shortcuts = new Shortcuts_class();
-	var Raster_commit = new Raster_commit_class();
+	var Layers, GUI;
+	run_with_splash([
+		{
+			text: '도구 불러오는 중…',
+			run: function () {
+				// Initiate app
+				Layers = new Base_layers_class();
+				var Base_tools = new Base_tools_class(true);
+				GUI = new Base_gui_class();
+				var Base_state = new Base_state_class();
+				var File_open = new File_open_class();
+				var File_save = new File_save_class();
+				var Base_search = new Base_search_class();
+				//shortcuts first: its Alt+click capture handler must run before the paint commit one
+				var Shortcuts = new Shortcuts_class();
+				var Raster_commit = new Raster_commit_class();
 
-	// Register singletons in app module
-	app.Actions = Actions;
-	app.Config = config;
-	app.FileOpen = File_open;
-	app.FileSave = File_save;
-	app.GUI = GUI;
-	app.Layers = Layers;
-	app.State = Base_state;
-	app.Tools = Base_tools;
+				// Register singletons in app module
+				app.Actions = Actions;
+				app.Config = config;
+				app.FileOpen = File_open;
+				app.FileSave = File_save;
+				app.GUI = GUI;
+				app.Layers = Layers;
+				app.State = Base_state;
+				app.Tools = Base_tools;
 
-	// Register as global for quick or external access
-	window.Layers = Layers;
-	window.AppConfig = config;
-	window.App = app;
-	init_layer_locks();
-	window.State = Base_state;
-	window.FileOpen = File_open;
-	window.FileSave = File_save;
-	window.RasterCommit = Raster_commit;
-	window.PixelSelection = new Pixel_selection_class();
-
-	// Render all
-	GUI.init();
-	Layers.init();
+				// Register as global for quick or external access
+				window.Layers = Layers;
+				window.AppConfig = config;
+				window.App = app;
+				init_layer_locks();
+				window.State = Base_state;
+				window.FileOpen = File_open;
+				window.FileSave = File_save;
+				window.RasterCommit = Raster_commit;
+				window.PixelSelection = new Pixel_selection_class();
+			},
+		},
+		{
+			text: '패널 배치 중…',
+			run: function () {
+				GUI.init();
+			},
+		},
+		{
+			text: '작업 영역 준비 중…',
+			run: function () {
+				Layers.init();
+			},
+		},
+	]).catch(function (error) {
+		console.error(error);
+	});
 }, false);
