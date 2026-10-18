@@ -38,6 +38,8 @@ class Raster_commit_class {
 		this.Selection = new Pixel_selection_class();
 		this.armed = null;
 		this.inplace = null;
+		//stroke being painted / merged: its temporary layer stays out of the Layers panel
+		this.stroke = null;
 		this.events();
 	}
 
@@ -111,6 +113,28 @@ class Raster_commit_class {
 			history_index: app.State.action_history_index,
 			conversion: conversion,
 		};
+		this.stroke = this.armed;
+	}
+
+	/**
+	 * temporary layer of the stroke in progress (Photoshop paints straight into the layer, so it is not listed)
+	 */
+	is_stroke_layer(layer) {
+		var stroke = this.stroke;
+		return stroke != null && layer != null && !stroke.known_ids.includes(layer.id);
+	}
+
+	/**
+	 * layer the running stroke paints into, or null
+	 */
+	stroke_target_id() {
+		return this.stroke ? this.stroke.target_id : null;
+	}
+
+	stroke_done(armed) {
+		if (this.stroke !== armed) return;
+		this.stroke = null;
+		app.GUI.GUI_layers.render_layers();
 	}
 
 	/**
@@ -205,6 +229,15 @@ class Raster_commit_class {
 		if (armed == null) {
 			return;
 		}
+		try {
+			await this.commit_stroke(armed);
+		}
+		finally {
+			this.stroke_done(armed);
+		}
+	}
+
+	async commit_stroke(armed) {
 		//tool's layer insert is async and can finish after mouseup (first stroke, slow storage)
 		var temp = null;
 		for (var tries = 0; tries < 100; tries++) {

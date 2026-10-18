@@ -479,10 +479,15 @@ class GUI_layers_class {
 		var html = '';
 
 		if (config.layer) {
+			//while a brush stroke is painted, its temporary layer is hidden and the painted layer stays selected
+			var raster = window.RasterCommit;
+			var active_id = raster && raster.stroke_target_id() != null && raster.is_stroke_layer(config.layer)
+				? raster.stroke_target_id() : config.layer.id;
 			for (var i in layers) {
 				var value = layers[i];
+				if (raster && raster.is_stroke_layer(value)) continue;
 				var classes = 'lp_item';
-				if (value.id == config.layer.id) classes += ' active';
+				if (value.id == active_id) classes += ' active';
 				if (value.visible == false) classes += ' hidden_layer';
 				var clipped = value.composition === CLIP_MODE;
 				if (clipped) classes += ' clipped';
@@ -513,7 +518,7 @@ class GUI_layers_class {
 					html += '	<span class="lp_adj_thumb lp_folder" data-id="' + value.id + '">' + ICONS.folder + '</span>';
 				}
 				else {
-					html += '	<canvas class="lp_thumb' + (value.id == config.layer.id && value._mask && !editing_mask ? ' editing' : '')
+					html += '	<canvas class="lp_thumb' + (value.id == active_id && value._mask && !editing_mask ? ' editing' : '')
 						+ '" width="48" height="36" data-id="' + value.id + '" title="픽셀 편집"></canvas>';
 				}
 				if (value._mask) {
