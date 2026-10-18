@@ -86,7 +86,7 @@ PSD 열기와 저장, 카메라 RAW 파일 열기, 16비트 편집을 지원합�
 
 지원하지 않는 환경
 - Windows 32비트
-- Windows on ARM (에뮬레이션으로 실행은 되지만 성능을 보장하지 않음)
+- Windows on ARM
 - macOS, Linux (현재 미지원)
 
 참고
@@ -97,7 +97,7 @@ PSD 열기와 저장, 카메라 RAW 파일 열기, 16비트 편집을 지원합�
 
 ## 직접 실행해 보기
 
-[Node.js](https://nodejs.org/) 18 이상이 필요합니다. Windows 앱으로 빌드하려면 [Rust](https://www.rust-lang.org/tools/install)도 설치해 주세요.
+[Node.js](https://nodejs.org/) 20.9 이상이 필요합니다. Windows 앱으로 빌드하려면 [Rust](https://www.rust-lang.org/tools/install)도 설치해 주세요.
 
 브라우저에서 실행하기
 ```bash
@@ -173,6 +173,8 @@ Limn은 [miniPaint](https://github.com/viliusle/miniPaint)(MIT)를 바탕으로 
 | [SlimSAM](https://huggingface.co/Xenova/slimsam-77-uniform) | 오브젝트 선택, 피사체 선택 | Apache-2.0 |
 | [LaMa](https://github.com/advimman/lama) | 내용 인식 채우기 | Apache-2.0 |
 | [NAFNet](https://github.com/megvii-research/NAFNet) | AI 노이즈 감소 | MIT |
+
+AI 모델의 라이선스는 원본 모델을 기준으로 적었습니다.
 
 <br>
 
